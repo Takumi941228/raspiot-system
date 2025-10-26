@@ -8,7 +8,7 @@ import json
 from datetime import datetime as dt 
 
 #MQTTブローカへの接続に必要な情報
-MQTT_HOST = 'MQTTブローカのIPアドレス'
+MQTT_HOST = '192.168.49.100'
 MQTT_PORT = 1883
 MQTT_TOPIC = 'esp32/bme'
 #mqttClientを指すための変数を用意

@@ -58,4 +58,5 @@ def main():
     for row in sql_cursor.fetchall():
         print( row[0], ', \t', row[1], ', \t', round(row[2], 2), ', \t', round(row[3], 2), ', \t', round(row[4], 2))
 
-main()
+if __name__ == '__main__':
+    main()

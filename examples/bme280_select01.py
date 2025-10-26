@@ -34,4 +34,5 @@ def main():
     for row in sql_cursor.fetchall():
         print(row[0], ', \t', row[1], ', \t', row[2], ', \t', row[3], ', \t', row[4])
 
-main()
+if __name__ == '__main__':
+    main()

@@ -44,4 +44,6 @@ def main():
     print( 'account_id \t', 'first_name \t', 'last_name \t', 'balance \t ','atm_count') #クエリを実行した結果得られたデータを1行ずつ表示する
     for row in sql_cursor.fetchall():
         print( row[0], ', \t', row[1], ', \t', row[2], ', \t', row[3], ', \t', row[4])
-main()
+
+if __name__ == '__main__':
+    main()

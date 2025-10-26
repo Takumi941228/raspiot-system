@@ -51,4 +51,5 @@ def main():
     #変更を実際に反映させる
     sql_connection.commit()
 
-main()
+if __name__ == '__main__':
+    main()

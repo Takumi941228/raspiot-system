@@ -40,4 +40,5 @@ def main():
   print('waiting for mqtt message')
   mqtt_ambient.loop()
 
-main()
+if __name__ == '__main__':
+  main()

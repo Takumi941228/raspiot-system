@@ -1,6 +1,10 @@
 #DB関連をまとめたモジュール
 import db_ambient_count01
 
+#グラフ表示に関するライブラリ
+import pandas as pd
+import plotly.express as px
+
 def main():
     #DBサーバに接続する
     db_ambient_count01.connect()
@@ -25,10 +29,23 @@ def main():
     #クエリを実施して結果を得る
     result = db_ambient_count01.select_ave_one_hour(node_id, datetime_start, limit_count)
 
-    #クエリの結果得られたデータを表示する
-    print( 'timestamp       \t', 'identifier        \t', 'temperature   \t', 'humidity  \t', 'pressure')
-    for data in result:
-        print( data['timestamp'], ', \t', data['identifier'], ', \t', round(data['temperature'], 2), ', \t', round(data['humidity'], 2), ', \t', round(data['pressure'], 2))
+    #結果を表形式に変換する
+    df = pd.DataFrame(result)
+
+    #コンソールに表示
+    print(df)
+
+    #Plotlyで折れ線グラフ
+    fig = px.line(
+        df,
+        x='timestamp',
+        y='temperature',
+        title=f'Temperature Trend for {node_id}',
+        labels={'timestamp': 'TimeStamp', 'temperature': 'Temperature [deg.C]'}
+    )
+
+    fig.update_xaxes(tickangle=90)  #x軸ラベルを90度回転
+    fig.show()
 
 if __name__ == '__main__':
     main()

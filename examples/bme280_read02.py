@@ -13,4 +13,5 @@ def main():
 
     print(f'温度: {temp:.2f} ℃, 湿度: {hum:.2f} %, 気圧: {press:.2f} hPa')
 
-main()
+if __name__ == '__main__':
+    main()

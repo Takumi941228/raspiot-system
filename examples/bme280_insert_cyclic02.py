@@ -37,4 +37,6 @@ def main():
         print('クエリを実行しました。('+ str(db_result) +' row affected.)')
 
         time.sleep(CYCLE_SEC)
-main()
+
+if __name__ == '__main__':
+    main()

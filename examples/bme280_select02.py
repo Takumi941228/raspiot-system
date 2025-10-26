@@ -41,4 +41,6 @@ def main():
     #クエリを実行した結果得られたデータを１行ずつ表示する
     for row in sql_cursor.fetchall():
         print(row[0], ', \t', row[1], ', \t', row[2], ', \t', row[3], ', \t', row[4])
-main()
+
+if __name__ == '__main__':
+    main()
