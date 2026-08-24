@@ -51,6 +51,7 @@ PubSubClient client(espClient);
 IPAddress local_ip(XX, XX, XX, XX); 
 IPAddress subnet(YY, YY, YY, YY); 
 IPAddress gateway(ZZ, ZZ, ZZ, ZZ);
+IPAddress dns(WW, WW, WW, WW);
 
 /* MQTT Publish用変数 */
 // JSONのオブジェクトを時間、温度、湿度、気圧用に4つの項目のため作成
@@ -71,7 +72,7 @@ unsigned int mode = 0;
 /* WiFiの設定及び接続 */
 void WiFi_init(void) {
   // connect wifi
-  WiFi.config(local_ip, gateway, subnet);
+  WiFi.config(local_ip, gateway, subnet, dns);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println(".");
