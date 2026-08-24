@@ -19,7 +19,8 @@
 #define MQTT_SERVER "MQTTブローカのIPアドレス"  //例:xx.xx.xx.xx 
 #define MQTT_PORT 1883 
 #define MQTT_BUFFER_SIZE 256 
-#define TOPIC "esp32/bme/00" 
+#define TOPIC "esp32/bme/00"
+#define TOPIC_STATUS "esp32/mode"
 #define DEVICE_ID "esp000"   //デバイスIDは機器ごとにユニーク
 
 /* PIN config */
@@ -61,6 +62,12 @@ StaticJsonDocument<message_capacity> json_message;
 // JSONデータを格納する文字型配列のサイズを256に設定
 char message_buffer[MQTT_BUFFER_SIZE];
 
+/* MQTT Subscribe用変数 */
+// JSONのオブジェクトを作成
+const int request_capacity = JSON_OBJECT_SIZE(4);
+// 静的にJSONデータを生成するためにメモリを確保
+StaticJsonDocument<request_capacity> json_request;
+
 /* NTPサーバ用インスタンス作成 */
 WiFiUDP ntpUDP;                // UDP client
 NTPClient timeClient(ntpUDP);  // NTP client
@@ -82,6 +89,7 @@ void WiFi_init(void) {
   Serial.println("");
   Serial.print("Connected : ");
   Serial.println(WiFi.localIP());
+ 
   // sync Time
   configTime(3600L * 9, 0, "ntp.nict.jp", "ntp.jst.mfeed.ad.jp");
 }
@@ -95,10 +103,26 @@ void Mqtt_connect(void) {
   while (!client.connected()) {
     Serial.println("Mqtt Reconnecting");
     if (client.connect(DEVICE_ID)) {
+      client.subscribe(TOPIC_STATUS);
       Serial.println("Mqtt Connected");
       break;
     }
   }
+}
+
+/* MQTT Subscribeのコールバック */
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+  DeserializationError err = deserializeJson(json_request, payload, length);
+  if( err ){
+    Serial.println("Deserialize error");
+    Serial.println(err.c_str());
+    return;
+  }
+
+  serializeJson(json_request, Serial);
+  Serial.println("");
+
+  mode = json_request["mode"];
 }
 
 /* MQTTBrokerへのPublish */
@@ -179,6 +203,9 @@ void setup() {
   // 5secごとにセンサデータを取得及びMQTTBrokerへPublish
   tickerMeasure.attach_ms(5000, PublishSensorData);
 
+  // MQTT subscribeの設定
+  client.setCallback(mqttCallback); 
+ 
   // ST7032設定
   lcd.begin();
   lcd.setcontrast(20);
