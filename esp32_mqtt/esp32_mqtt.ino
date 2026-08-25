@@ -16,7 +16,7 @@
 #define WIFI_PASSWORD "PASS" 
  
 /* MQTT config */ 
-#define MQTT_SERVER "IPaddress"  //例:xx.xx.xx.xx 
+#define MQTT_SERVER "MQTTブローカのIPアドレス"  //例:xx.xx.xx.xx 
 #define MQTT_PORT 1883
 #define MQTT_BUFFER_SIZE 256 
 #define TOPIC "esp32/bme" 
