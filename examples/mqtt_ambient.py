@@ -7,12 +7,6 @@ import json
 #日付・時刻に関するライブラリを使用する
 from datetime import datetime as dt 
 
-#DB関連を取扱う
-import db_ambient
-
-#このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_mqtt_999'
-
 #MQTTブローカへの接続に必要な情報
 MQTT_HOST = 'MQTTブローカのIPアドレス'
 MQTT_PORT = 1883
