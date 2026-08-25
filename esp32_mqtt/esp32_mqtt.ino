@@ -12,14 +12,14 @@
 /* -------------------------定義分------------------------- */
 /* wifi config */ 
 /* 接続先wifiのSSIDとPASSを設定 */ 
-#define WIFI_SSID "ssid" 
-#define WIFI_PASSWORD "password" 
+#define WIFI_SSID "SSID" 
+#define WIFI_PASSWORD "PASS" 
  
 /* MQTT config */ 
-#define MQTT_SERVER "MQTTブローカのIPアドレス"  //例:xx.xx.xx.xx 
-#define MQTT_PORT 1883 
+#define MQTT_SERVER "IPaddress"  //例:xx.xx.xx.xx 
+#define MQTT_PORT 1883
 #define MQTT_BUFFER_SIZE 256 
-#define TOPIC "esp32/bme/00"
+#define TOPIC "esp32/bme/00" 
 #define TOPIC_STATUS "esp32/mode"
 #define DEVICE_ID "esp000"   //デバイスIDは機器ごとにユニーク
 
@@ -76,6 +76,21 @@ NTPClient timeClient(ntpUDP);  // NTP client
 unsigned int mode = 0;
 
 /* ------------------------------各種関数定義------------------------ */
+/* MQTT Subscribeのコールバック関数 */
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+  DeserializationError err = deserializeJson(json_request, payload, length);
+  if( err ){
+    Serial.println("Deserialize error");
+    Serial.println(err.c_str());
+    return;
+  }
+
+  serializeJson(json_request, Serial);
+  Serial.println("");
+
+  mode = json_request["mode"];
+}
+
 /* WiFiの設定及び接続 */
 void WiFi_init(void) {
   // connect wifi
@@ -89,7 +104,6 @@ void WiFi_init(void) {
   Serial.println("");
   Serial.print("Connected : ");
   Serial.println(WiFi.localIP());
- 
   // sync Time
   configTime(3600L * 9, 0, "ntp.nict.jp", "ntp.jst.mfeed.ad.jp");
 }
@@ -108,21 +122,6 @@ void Mqtt_connect(void) {
       break;
     }
   }
-}
-
-/* MQTT Subscribeのコールバック */
-void mqttCallback(char* topic, byte* payload, unsigned int length) {
-  DeserializationError err = deserializeJson(json_request, payload, length);
-  if( err ){
-    Serial.println("Deserialize error");
-    Serial.println(err.c_str());
-    return;
-  }
-
-  serializeJson(json_request, Serial);
-  Serial.println("");
-
-  mode = json_request["mode"];
 }
 
 /* MQTTBrokerへのPublish */
@@ -205,7 +204,7 @@ void setup() {
 
   // MQTT subscribeの設定
   client.setCallback(mqttCallback); 
- 
+
   // ST7032設定
   lcd.begin();
   lcd.setcontrast(20);
