@@ -14,7 +14,7 @@ import db_ambient
 NODE_IDENTIFIER = 'tochigi_mqtt_999'
 
 #MQTTブローカへの接続に必要な情報
-MQTT_HOST = '192.168.49.100'
+MQTT_HOST = 'MQTTブローカのIPアドレス'
 MQTT_PORT = 1883
 MQTT_TOPIC = 'esp32/bme'
 #mqttClient を指すための変数を用意
