@@ -5,7 +5,7 @@ import time       #時間を取扱う
 import datetime   #日付と時刻を取扱う
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_iot_999'
+NODE_IDENTIFIER = 'tochigi_iot_0XX'
 
 #何秒ごとに測定するか
 CYCLE_SEC = 10
