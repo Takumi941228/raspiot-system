@@ -11,10 +11,10 @@ from datetime import datetime as dt
 import db_ambient
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_mqtt_999'
+NODE_IDENTIFIER = 'tochigi_mqtt_0XX'
 
 #MQTTブローカへの接続に必要な情報
-MQTT_HOST = 'MQTTブローカのIPアドレス'
+MQTT_HOST = 'MQTTブローカのIPアドレス' #例:xx.xx.xx.xx
 MQTT_PORT = 1883
 MQTT_TOPIC = 'esp32/bme'
 #mqttClient を指すための変数を用意
