@@ -13,7 +13,7 @@ import json
 from pytz import timezone
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_iot_899'
+NODE_IDENTIFIER = 'tochigi_mqtt_1XX'
 
 #MQTTブローカの情報
 MQTT_HOST = 'localhost'
