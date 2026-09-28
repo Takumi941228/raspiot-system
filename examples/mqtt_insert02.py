@@ -5,7 +5,7 @@ import mqtt_ambient
 import db_ambient
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_mqtt_999';
+NODE_IDENTIFIER = 'tochigi_mqtt_0XX';
 
 #コールバック関数
 #MQTTブローカより新たなデータが来たらこのメソッドが呼ばれる
