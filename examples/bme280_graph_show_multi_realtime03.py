@@ -25,8 +25,8 @@ app.layout = html.Div([
     dcc.RadioItems(
         id='node-select',
         options=[
-            {'label': 'Raspberry Pi Data', 'value':'tochigi_iot_999'},
-            {'label': 'ESP32 Data', 'value':'tochigi_mqtt_999'}
+            {'label': 'Raspberry Pi Data', 'value':'tochigi_iot_0XX'},
+            {'label': 'ESP32 Data', 'value':'tochigi_mqtt_0XX'}
         ],
         value='tochigi_iot_999'
     ),
