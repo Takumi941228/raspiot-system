@@ -21,7 +21,7 @@ def main():
     #表示を開始する日付・時刻を入力する
     print('１時間ごとに平均したデータを表示します。')
     print('どのノードのデータを表示しますか？')
-    node_id = input('ノードの Identifier(例: tochigi_mqtt_999): ')
+    node_id = input('ノードの Identifier(例: tochigi_mqtt_0XX): ')
 
     print('いつのデータから表示しますか？')
     s_year = input('年(例: 2024): ')
