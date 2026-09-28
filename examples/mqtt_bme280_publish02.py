@@ -14,7 +14,7 @@ from pytz import timezone
 import mqtt_ambient_pub
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_iot_899'
+NODE_IDENTIFIER = 'tochigi_,mqtt_1XX'
 
 #接続先情報
 MQTT_HOST = 'localhost'
