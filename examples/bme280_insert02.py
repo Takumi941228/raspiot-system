@@ -5,7 +5,7 @@ import datetime        #日付と時刻を取扱う
 import pymysql.cursors #PythonからDBを取扱う
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_iot_999'
+NODE_IDENTIFIER = 'tochigi_iot_0XX'
 
 def main():
     #モジュール内に定義されているメソッドを呼び出す
