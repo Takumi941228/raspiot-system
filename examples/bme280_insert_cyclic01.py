@@ -6,7 +6,7 @@ import pymysql.cursors #PythonからDBを取扱う
 
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_iot_999'
+NODE_IDENTIFIER = 'tochigi_iot_0XX'
 
 #DBへの接続情報
 DB_USER = 'iot_user'
