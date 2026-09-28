@@ -5,7 +5,7 @@ import mqtt_ambient_sub
 import db_ambient
 
 #このノードを識別するID
-NODE_IDENTIFIER = 'tochigi_iot_899'
+NODE_IDENTIFIER = 'tochigi_mqtt_1XX'
 
 #接続先情報
 MQTT_HOST = 'localhost'
