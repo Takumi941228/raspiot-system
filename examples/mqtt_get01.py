@@ -1,7 +1,7 @@
 #PahoのMQTTライブラリを使用する
 import paho.mqtt.client as mqtt
 
-MQTT_HOST = 'MQTTブローカのIPアドレス'
+MQTT_HOST = 'MQTTブローカのIPアドレス' #例:xx.xx.xx.xx
 MQTT_PORT = 1883
 MQTT_TOPIC = 'esp32/bme'
 
