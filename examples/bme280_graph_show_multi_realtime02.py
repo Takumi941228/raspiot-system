@@ -15,7 +15,7 @@ app = Dash()
 #表示を開始する日付・時刻を入力する
 print('最新のデータをリアルタイムに表示します。')
 print('どのノードのデータを表示しますか？')
-node_id = input('ノードの Identifier(例: tochigi_iot_999): ')
+node_id = input('ノードの Identifier(例: tochigi_iot_0XX): ')
 
 print('何サンプル前のデータまで表示しますか？')
 #入力したデータを数値に変換
