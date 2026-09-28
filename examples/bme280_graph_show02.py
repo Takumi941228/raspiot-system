@@ -13,7 +13,7 @@ def main():
     #表示を開始する日付・時刻を入力する
     print('最新のデータを表示します。')
     print('どのノードのデータを表示しますか？')
-    node_id = input('ノードの Identifier(例:tochigi_mqtt_999): ')
+    node_id = input('ノードの Identifier(例:tochigi_mqtt_0XX): ')
 
     print('何サンプル前のデータまで表示しますか？')
     #入力したデータを数値に変換
