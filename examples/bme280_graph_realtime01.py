@@ -35,9 +35,61 @@ print('グラフの更新周期(秒)は？')
 # 入力したデータを数値に変換（自動更新間隔となる秒数を整数化）
 update_cycle = int(input('数値を入力(例: 10) : '))
 
+# ダッシュボードレイアウトの定義
+# ダッシュボードレイアウトの変更（Web画面の見た目・配置を設定）
+app.layout = html.Div([
+    # タイトル見出し (<h1> タグ: 選択されたノードIDを表示)
+    html.H1(children=f"Temperature Trend (Node: {node_id})"),
+    
+    # 自動更新タイマー（指定された周期ごとにイベントを発火させるコンポーネント）
+    dcc.Interval(
+        id='interval-component',
+        interval=update_cycle * 1000,  # 秒数をミリ秒単位に変換（例: 10秒 = 10000ミリ秒）
+        n_intervals=0                  # カウントの初期値
+    ),
+    
+    # グラフ描画エリア（生成された気温グラフが表示される領域）
+    dcc.Graph(id='live-graph')
+])
 
-# ==========================================
-# 3. ダッシュボードレイアウトの定義
-# ==========================================
+# 自動更新のコールバック定義とグラフ自動描画
+# 自動更新のコールバック内容
+# タイマー(interval-component)が更新されるたびに update_graph 関数を自動呼び出し
+@app.callback(
+    Output('live-graph', 'figure'),            # 【出力】id='live-graph' の 'figure'(グラフ画像データ) に反映
+    Input('interval-component', 'n_intervals') # 【入力】タイマーの経過カウント（自動実行のトリガー）
+)
 
-# ダッシュボードレイアウトの変更（Web
+# 更新周期毎にグラフの自動描画を行う関数
+def update_graph(n):
+    # DBサーバに接続する
+    db_ambient_count02.connect()
+
+    # クエリを実施して結果を得る（選択されたノードと件数指定で最新データを取得）
+    result = db_ambient_count02.select_newest(node_id, limit_count)
+
+    # 結果を表形式（Pandas DataFrame）に変換する
+    df = pd.DataFrame(result)
+ 
+    # コンソール表示（取得したデータの内容をターミナルで確認）
+    print(df)
+
+    # グラフ生成（気温データの折れ線グラフを作成）
+    fig = px.line(
+        df,
+        x='timestamp',   # X軸: 日時データ
+        y='temperature', # Y軸: 気温データ
+        title=f'Temperature Trend(Node: {node_id}, Every {update_cycle} sec. cycle)',
+        labels={'timestamp': 'TimeStamp', 'temperature': 'Temperature [deg.C]'}
+    )
+    
+    # x軸ラベルを90度回転（日時表示が長く重なってしまうのを防ぐ）
+    fig.update_xaxes(tickangle=90)  
+
+    # 作成したグラフオブジェクトを返し、Web画面上の 'live-graph' に反映
+    return fig
+
+# アプリケーションの実行
+# Run the app（このPythonファイルが直接実行された場合にWebサーバーを起動）
+if __name__ == '__main__':
+    app.run(debug=False)
