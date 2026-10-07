@@ -152,7 +152,7 @@ void PublishSensorData(void) {
   // json_messageの中のJSONデータをJSON形式の文字列message_bufferとしてシリアライズ化（文字列に変換）
   serializeJson(json_message, message_buffer, sizeof(message_buffer));
 
-  // トピックをesp32/bmeして、JSON形式の文字列をパブリッシュする
+  // トピックをesp32/bme/xxして、JSON形式の文字列をパブリッシュする
   client.publish(TOPIC, message_buffer);
 }
 
