@@ -4,9 +4,9 @@ def main():
     #DB サーバに接続する
     sql_connection = pymysql.connect(
         user='iot_user',  #データベースにログインするユーザ名
-        passwd='password',#データベースユーザのパスワード
+        password='password',#データベースユーザのパスワード
         host='localhost', #接続先DBのホストorIPアドレス
-        db='practice'
+        database='practice'
     )
     #cursor オブジェクトのインスタンスを生成
     sql_cursor = sql_connection.cursor()
