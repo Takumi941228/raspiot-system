@@ -103,4 +103,28 @@ def update_graph(n, metric):
             df,
             x='timestamp', # X軸: 日時
             y='humidity',  # Y軸: 湿度
-            title=f'
+            title=f'Humidity Trend(Node: {node_id}, Every {update_cycle} sec. cycle)',
+            labels={'timestamp': 'TimeStamp', 'humidity': 'Humidity [%]'},
+            color_discrete_sequence=['blue']  # 青に変更
+        )
+    else:
+        # グラフ生成（気圧用）
+        fig = px.line(
+            df,
+            x='timestamp', # X軸: 日時
+            y='pressure',  # Y軸: 気圧
+            title=f'Pressure Trend(Node: {node_id}, Every {update_cycle} sec. cycle)',
+            labels={'timestamp': 'TimeStamp', 'pressure': 'Presuure [hPa]'},
+            color_discrete_sequence=['green']  # 緑に変更
+        )
+    
+    # x軸ラベルを90度回転（タイムスタンプ文字列が重ならないように見易く調整）
+    fig.update_xaxes(tickangle=90)  
+
+    # 作成したグラフオブジェクトを返し、画面に反映させる
+    return fig
+
+# アプリケーションの実行
+# Run the app（このファイルを直接実行した場合にのみWebサーバーを起動）
+if __name__ == '__main__':
+    app.run(debug=False)
