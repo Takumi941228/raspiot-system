@@ -10,7 +10,7 @@ from datetime import datetime as dt
 #MQTTブローカへの接続に必要な情報
 MQTT_HOST = 'MQTTブローカのIPアドレス' #例:xx.xx.xx.xx
 MQTT_PORT = 1883
-MQTT_TOPIC = 'esp32/bme'
+MQTT_TOPIC = 'esp32/bme/xx'
 #mqttClient を指すための変数を用意
 mqttClient = None
 #コールバック関数
