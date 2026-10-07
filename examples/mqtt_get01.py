@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 
 MQTT_HOST = 'MQTTブローカのIPアドレス' #例:xx.xx.xx.xx
 MQTT_PORT = 1883
-MQTT_TOPIC = 'esp32/bme'
+MQTT_TOPIC = 'esp32/bme/xx'
 
 #サーバからCONNACK応答を受信したときに実行されるコールバック
 def on_connect(client, userdata, flags, rc):
