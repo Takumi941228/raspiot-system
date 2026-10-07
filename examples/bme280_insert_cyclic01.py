@@ -21,9 +21,9 @@ def main():
     #DBサーバに接続する
     sql_connection = pymysql.connect(
         user= DB_USER,    #データベースにログインするユーザ名
-        passwd = DB_PASS, #データベースユーザのパスワード
+        password = DB_PASS, #データベースユーザのパスワード
         host = DB_HOST,   #接続先DBのホストorIPアドレス
-        db = DB_NAME
+        database = DB_NAME
     )
 
     print("Database connection established!");
