@@ -79,7 +79,8 @@ def update_graph(node_id):
         fig.add_trace(go.Scatter(
             x=df["timestamp"], 
             y=df["temperature"], 
-            mode='lines+markers'
+            mode='lines+markers',
+            name=str(node)
         ))
 
     # 5. グラフのデザイン調整・レイアウト設定
