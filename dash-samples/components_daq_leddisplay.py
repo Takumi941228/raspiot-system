@@ -52,7 +52,7 @@ app.layout = html.Div([
     # 【LEDディスプレイ部品】温度、湿度、気圧をデジタル数字で表示
     daq.LEDDisplay(
         id='our-LED-display1',
-        label="Temp [°C]",
+        label="Temp [deg.C]",
         value="0",
         size=30
     ),
