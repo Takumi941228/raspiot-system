@@ -89,7 +89,7 @@ def update_graph(data_value):
         x='timestamp',
         y='temperature',
         title=f'Latest Temperature Trend for {node_id}',
-        labels={'timestamp': 'TimeStamp', 'temperature': 'AVG-Temperature [deg.C]'}
+        labels={'timestamp': 'TimeStamp', 'temperature': 'AVG.Temperature [deg.C]'}
     )
 
     # 生成したグラフオブジェクトを返し、画面上の 'live-graph' に反映させる
