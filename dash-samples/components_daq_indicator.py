@@ -51,8 +51,7 @@ app.layout = html.Div([
     daq.Indicator(
         id='our-indicator',
         label="Temperature Warning (> 28.0°C)",
-        value=False,        # 初期状態（False: 消灯 / True: 点灯）
-        color="#FF5733",    # 点灯時のランプの色
+        value=False        # 初期状態（False: 消灯 / True: 点灯）
     ),
 ])
 
