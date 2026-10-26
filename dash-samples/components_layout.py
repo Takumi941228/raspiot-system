@@ -216,7 +216,7 @@ def update_dashboard(selected_nodes, metric, limit_count, selected_date, n_inter
     if selected_nodes:
         for node in selected_nodes:
             res = db_ambient_count02.select_newest(node, limit_count)
-            df_node = d.DataFrame(res)
+            df_node = pd.DataFrame(res)
             if not df_node.empty:
                 df_node['node_id'] = node  # ノード識別列を追加
                 line_dfs.append(df_node)
